@@ -28,6 +28,16 @@ async function main() {
     );
 
 
+    // Wait for deployment transaction to be mined
+    const deploymentTx = zipToken.deploymentTransaction();
+    if (deploymentTx) {
+        await deploymentTx.wait();
+    } else {
+        throw new Error("Deployment transaction is null");
+    }
+
+
+
 
     // Get user's ETH balance after deployment
     const balanceAfter = await deployer.provider.getBalance(deployer.address);
