@@ -34,7 +34,9 @@ async function main() {
     console.log('ETH balance after deployment:', ethers.formatEther(balanceAfter));
 
     // Output contract address
-    console.log('Contract address:', zipToken.);
+    console.log('Zip Token deployed:', await zipToken.getAddress());
+
+
 
 }
 
