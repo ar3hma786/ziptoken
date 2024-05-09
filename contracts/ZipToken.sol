@@ -18,12 +18,14 @@ contract ZipToken is ERC20Capped {
     );
 
     constructor(
-        address initialOwner,
+        string memory name,
+        string memory symbol,
+        uint256 totalSupply,
+        uint8 decimals,
         address _uniswapRouter,
         address _uniswapFactory
-    ) ERC20("ZipToken", "ZIP") ERC20Capped(TOTAL_SUPPLY) {
-        owner = initialOwner;
-        _mint(owner, TOTAL_SUPPLY);
+    ) ERC20(name, symbol) ERC20Capped(totalSupply * (10 ** decimals)) {
+        _mint(msg.sender, totalSupply * (10 ** decimals));
         uniswapRouter = _uniswapRouter;
         uniswapFactory = _uniswapFactory;
     }
