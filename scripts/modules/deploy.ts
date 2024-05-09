@@ -5,8 +5,8 @@ async function main() {
     const [deployer] = await ethers.getSigners();
 
     // Get user's ETH balance before deployment
-    const balanceBefore = await deployer.getBalance();
-    console.log('ETH balance before deployment:', ethers.utils.formatEther(balanceBefore));
+    const balanceBefore = await deployer.provider.getBalance(deployer.address);
+    console.log('ETH balance before deployment:', ethers.formatEther(balanceBefore));
 
     // Deploy ZipToken contract
     const ZipToken = await ethers.getContractFactory('ZipToken');
@@ -16,12 +16,8 @@ async function main() {
     await zipToken.deployed();
 
     // Get user's ETH balance after deployment
-    const balanceAfter = await deployer.getBalance();
-    console.log('ETH balance after deployment:', ethers.utils.formatEther(balanceAfter));
-
-    // Output transaction link
-    console.log('Transaction hash:', zipToken.deployTransaction.hash);
-    console.log('View transaction on Etherscan:', `https://sepolia.etherscan.io/tx/${zipToken.deployTransaction.hash}`);
+    const balanceAfter = await deployer.provider.getBalance(deployer.address);
+    console.log('ETH balance after deployment:', ethers.formatEther(balanceAfter));
 }
 
 // Execute main function
