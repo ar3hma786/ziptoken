@@ -1,6 +1,4 @@
 
----
-
 # ZipToken Project
 
 This project contains smart contract code for the ZipToken ERC20 token and deployment scripts using Hardhat.
